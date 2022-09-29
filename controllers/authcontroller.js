@@ -1,32 +1,53 @@
-const sql=require('../models/db');
-const dal = require('../models/dal');
+const dal = require("../model/authDal");
 
-exports.login=async(req, res)=>{
-    let user=req.body;
-    let message="";
-     let result = await dal.validate (user)
-  
-    res.send(result);
+// Customers
+exports.customer_login = async (req, res) => {
+  let data = [];
+  data = await dal.customer_login(req);
+  res.send(data);
 };
 
-exports.register= async (req, res)=>{
-    const userPayload = req.body
-    
-    // add validation
-    if(!userPayload.username || !userPayload.password){
-        res.status(400).json({success: false, message: 'Username or password is missing!'})
-        return
-    }
+exports.customer_register = async (req, res) => {
+  let data = [];
+  data = await dal.customer_register(req);
+  res.send(data);
+};
 
-    //save in db
-    let command="INSERT INTO registration() values(" + userPayload.fname+"','"+ userPayload.email ;
-    const saveRes = await new Promise((resolve, reject) => {
-        
-    })
+// Seller
+exports.seller_login = async (req, res) => {
+  let data = [];
+  data = await dal.seller_login(req);
+  res.send(data);
+};
 
-    res.status(200).json({success: true, data: saveRes, message: 'Successfully registered!'})
+exports.seller_register = async (req, res) => {
+  let data = [];
+  data = await dal.seller_register(req);
+  res.send(data);
+};
 
+// Staff
+exports.staff_login = async (req, res) => {
+  let data = [];
+  data = await dal.staff_login(req);
+  res.send(data);
+};
 
-    //return response
-    // res.send("new user registrations...")
-}
+exports.staff_register = async (req, res) => {
+  let data = [];
+  data = await dal.staff_register(req);
+  res.send(data);
+};
+
+// vendors
+exports.vendors_login = async (req, res) => {
+  let data = [];
+  data = await dal.vendors_login(req);
+  res.send(data);
+};
+
+exports.vendors_register = async (req, res) => {
+  let data = [];
+  data = await dal.vendors_register(req);
+  res.send(data);
+};
